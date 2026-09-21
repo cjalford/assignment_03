@@ -38,3 +38,57 @@ Test it: pytest tests/test_streamlit.py -k process_files
 # README Step 7 names the two traps. The tests are built around them: choosing a
 # file without clicking must change nothing, and a rerun with the same file still
 # chosen must not count it again.
+
+
+import json
+
+import streamlit as st
+
+from packaging_parser import calc_total_units, get_unit, parse_packaging
+
+# initialize
+if "files_processed" not in st.session_state:
+    st.session_state["files_processed"] = 0
+    st.session_state["packages_processed"] = 0
+    st.session_state["file_summaries"] = []
+
+# page 
+st.title("Process Package Files")
+
+package_file = st.file_uploader("Upload package file:", key="package_file")
+
+process = st.button("Process", key="process")
+
+# update onclick
+if process and package_file:
+    text = package_file.getvalue().decode("utf-8")
+
+    packages = []
+    for line in text.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        packages.append(parse_packaging(line))
+
+    json_path = f"data/{package_file.name.replace ('.txt', '.json')}"
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(packages, f, indent=4)
+
+    st.session_state["files_processed"] += 1
+    st.session_state["packages_processed"] += len(packages)
+    st.session_state["file_summaries"].append(
+        f"{len(packages)} packages written to {json_path}"
+        )
+
+if st.button("Reset", key="reset"):
+    st.session_state["files_processed"] = 0
+    st.session_state["packages_processed"] = 0
+    st.session_state["file_summaries"] = []
+
+# display the state
+left, right = st.columns(2)
+left.metric("Files processed", st.session_state["files_processed"])
+right.metric("Packages processed", st.session_state["packages_processed"])
+
+for summary in st.session_state["file_summaries"]:
+    st.info(summary)
