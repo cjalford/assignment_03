@@ -63,7 +63,7 @@ if package_file:
 #    <name> is the uploaded file's name with .txt replaced by .json.
     json_name = package_file.name.replace(".txt", ".json")
     json_path = f"data/{json_name}"
-    with open(json_path, "w") as f:
+    with open(json_path, "w", encoding="utf-8") as f:
         json.dump(packages, f, indent=2)
 
 
