@@ -1,13 +1,1 @@
-What I learned:
-- A Streamlit script does not run continuously. It executes top to bottom and reruns from line 1 on every time. which resets vaiables
-- To keep alues that need to remain you have to use st.session_state with an if statement to not have the value reset when the script reruns
-- A gaurd stops the script from running until the widget inputs a value preventing blacks from being returned
-- Making the process button triggered makes it so that the same file isn't repeatedly used over and over and the script is only rerun when the button is clicked.
-- The Streamlit server process has to stay running in the terminal. When I stopped it, the browser tab had nothing to connect to and showed a blank page.
-What I can work on:
-- Choosing the right widget. I assumed which one to use instead of checking the documentation, and picked the wrong one more than once.
-- Matching exact strings. I failed several tests over small differences between my titles and output text and what the tests expected.
-What to do for next time: 
-- Read the textbook chapter that connects to the assignment before starting, rather than skimming it and working it out as I go. 
-- Look up the widget I need in the Streamlit API reference before writing the line, instead of guessing.
-- Slow down and write one step at a time, checking each against the test expectations before moving on.
+During this assignment I learned the importance of rerun on a Streamlit app and how it doesn't just keep running but does the task then goes back to the beginning. From this I leanred to use session_state to keep certain results running and shown even when the streamlit reruns. Specifically I learned the importance of continuing to keep the streamlit open while I was writing code and to not close the window as this would cause the streamlit to not work and it came up as a blank page for me. Next time with when using a streamlit I will slow down and work through the code without trying to just push what I'm trying to do immediately. I will also look into the widgets available for streamlit as I often found myslef using the wrong widget when writing my code as i was just making an assumption instead of looking into what was the right thing for what I was trying to output. I also still need to continue to work on my syntax and making sure my own titles and text match the tests as again I failed multiple tests due to small mistakes that if I looked closer the mistake could have been easily avaoidable. Next time I should come into the assignment more prepared by fully reading about the topic in the textbook instead of brushing over it and just going in unprepared 
