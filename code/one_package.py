@@ -53,7 +53,7 @@ if package_data:
     #    it, and a loop over each item's .items(), gives you the name and quantity.
     for level in package:
         for name, quantity in level.items():
-            st.write(f"{name} ➡️ {quantity}")
+            st.info(f"{name} ➡️ {quantity}")
 
     # 4. Show the total.
     st.success(f"Total 📦 Size: {total} {unit}")

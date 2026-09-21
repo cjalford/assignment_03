@@ -44,7 +44,7 @@ import json
 
 import streamlit as st
 
-from packaging_parser import calc_total_units, get_unit, parse_packaging
+from packaging_parser import parse_packaging
 
 # initialize
 if "files_processed" not in st.session_state:
